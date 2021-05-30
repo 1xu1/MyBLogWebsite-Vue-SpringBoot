@@ -16,9 +16,9 @@
 - 腾讯云 centos 7
 - Apache服务器
 - Java环境：
-openjdk version "15.0.2" 2021-01-19
-OpenJDK Runtime Environment AdoptOpenJDK (build 15.0.2+7)
-OpenJDK 64-Bit Server VM AdoptOpenJDK (build 15.0.2+7, mixed mode, sharing)
+  - openjdk version "15.0.2" 2021-01-19
+  - OpenJDK Runtime Environment AdoptOpenJDK (build 15.0.2+7)
+  - OpenJDK 64-Bit Server VM AdoptOpenJDK (build 15.0.2+7, mixed mode, sharing)
 # 源码生产环境
 - node.js v14.16.0
 - vue-cli @vue/cli 4.5.13
