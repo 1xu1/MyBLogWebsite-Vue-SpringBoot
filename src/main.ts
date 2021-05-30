@@ -7,7 +7,7 @@ import 'mavon-editor/dist/css/index.css'
 
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
-Vue.use(mavonEditor)
+Vue.use(mavonEditor);
 
 function setIpAdress() {
   if (
