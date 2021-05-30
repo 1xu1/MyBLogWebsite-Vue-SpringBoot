@@ -67,7 +67,7 @@ export default {
         //读取全部的博文数据
         getData: function () {
             axios
-                .get("/api/getAllBlog", {
+                .get("/api/getBlogList", {
                     params: {
                         start: this.page,
                         limit: this.limit,
