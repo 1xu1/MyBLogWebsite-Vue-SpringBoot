@@ -11,12 +11,12 @@
         </div>
     </div>
     <!--评论列表-->
-    <div v-for="item in comments_content">
+    <div v-for="item in comments_content" style="margin-top:20px" :id="item.floor">
         <!--单条评论渲染-->
-        <hr />
+        <hr>
         <!--渲染评论头部信息-->
-        <div>
-            #{{ item.floor }}
+        <div class="row" style="align-items:center;">
+            <div style="margin-left:10px">#{{ item.floor }}</div>
             <img src="../assets/img/default_head.png" class="head_icon" alt="..." />
             <span class="commenter_name"> {{ item.comment_user_name }}</span>
             <span class="comment_sub" v-time="item.comment_time"></span>
@@ -25,7 +25,7 @@
         </div>
         <!--渲染评论内容-->
         <div class="comment-content">
-            {{ item.comment_content }}
+            {{item.comment_content }}
         </div>
 
     </div>
@@ -165,7 +165,9 @@ function GetRequest() {
 }
 
 .comment-content {
+    text-indent:40px;
     position: relative;
+    width: 95%;
     left: 35px;
     margin-top: 10px;
 }
@@ -217,10 +219,11 @@ function GetRequest() {
 }
 
 .head_icon {
+    position: relative;
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    margin: 5px 5px 5px 5px;
+    margin: 5px 15px 5px 15px;
 }
 
 .subheading {

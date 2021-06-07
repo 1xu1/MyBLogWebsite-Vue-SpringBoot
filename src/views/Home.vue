@@ -7,6 +7,7 @@
             <PagesButton :pageNum="page" :pages="pageTotal"></PagesButton>
         </div>
         <div class="left">
+            <LatestCommentCard style="width:250px"></LatestCommentCard>
         </div>
         <div class="right">
             <PersonalCard></PersonalCard>
@@ -25,6 +26,7 @@ import BlogList from "../components/BlogList";
 import PagesButton from "../components/PagesButton.vue";
 import PersonalCard from "../components/PersonalCard"
 import MusicPlayer from "../components/MusicPlayer"
+import LatestCommentCard from "../components/LatestCommentCard.vue"
 
 import axios from "axios"
 export default {
@@ -45,7 +47,8 @@ export default {
         BlogList,
         PagesButton,
         PersonalCard,
-        MusicPlayer
+        MusicPlayer,
+        LatestCommentCard
     },
     mounted: function () {
         
@@ -58,9 +61,6 @@ export default {
         if (this.$route.query.label != undefined) {
             this.blog_label = this.$route.query.label;
         }
-        console.log(this.page);
-        console.log(this.limit);
-        
         this.getData();
     },
     methods: {
@@ -77,7 +77,6 @@ export default {
                 .then((res) => {
                     this.blog = res.data.data.list;
                     this.pageTotal = res.data.data.pages;
-                    console.log(res.data.data);
                     this.loading = false;
                 })
                 .catch((err) => {
@@ -99,6 +98,12 @@ export default {
     .container {
         background-color:lightblue;
         padding:0 10px;
+    }
+    .left {
+        display: none;
+    }
+    .right{
+        display: none;
     }
 }
 @media screen and (min-width: 1000px) {

@@ -71,9 +71,13 @@ export default {
     filters: {
         ellipsis(_val) {
             if (!_val) return "";
+            //去掉#号
+            _val=_val.replace(/#/g,"");
+            //超出200字符的去掉
             if (_val.length > 200) {
                 return _val.slice(0, 200) + "······";
             }
+            
             return _val;
         },
     },

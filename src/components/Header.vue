@@ -8,7 +8,7 @@
       <a class="head-item" href="/building">资源分享</a>
       <a class="head-item" href="/building">项目分享</a>
     </nav>
-    <el-button @click="loginDialog=true" type="primary" class="head-button">登录</el-button>
+    <el-button @click="login()" type="primary" class="head-button">登录</el-button>
     <Login :loginVisible='loginDialog'></Login>
   </div>
 </template>
@@ -25,6 +25,15 @@ export default {
   data(){
     return{
       loginDialog:false
+    }
+  },
+  methods:{
+    login:function(){
+      if (sessionStorage.login_stat) {
+        location.replace("/admin_back");
+        return
+      }
+      this.loginDialog=true
     }
   }
 };

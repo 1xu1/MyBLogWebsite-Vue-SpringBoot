@@ -35,6 +35,7 @@ var Time = {
         return date.getFullYear() + '-' + month + '-' + day + "  " + hours + ":" + minutes + ":" + seconds
     },
     getFormatTime: function(timestamp) {
+        timestamp=new Date(timestamp)
         var now = this.getUnix();
         var today = this.getTodayUnix();
         var year = this.getYearUnix();
