@@ -18,7 +18,7 @@
         },
         methods:{
             pageTrans:function(index){
-                location.replace("./home?page=" + index);
+                location.replace(this.$route.path+"?page=" + index);
             }
         }
     }
@@ -42,6 +42,7 @@
 }
 .item:hover{
     background: rgba(26,115,132,.06);
+    transition: all .4s;
 }
 .item:active{
     background: rgba(26,115,132,.5);

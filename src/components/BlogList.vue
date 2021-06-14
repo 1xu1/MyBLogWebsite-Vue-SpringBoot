@@ -14,16 +14,19 @@
             <div class="body">
                 <div class="subheading not-slected">
                     <div class="item">
-                        <span class="bi bi-calendar-week" v-time="item.blog_time"></span>
+                        <span class="bi bi-calendar-week-fill"></span> <span v-time="item.blog_time" class="tag-content"></span>
                     </div>
                     <div class="item">
-                        <span class="bi bi-person">作者:{{ item.blog_writer }}</span>
+                        <span class="bi bi-person-fill"></span><span class="tag-content">作者:{{ item.blog_writer }}</span>
                     </div>
                     <div class="item">
-                        <span class="bi bi-heart">喜欢:{{ item.blog_like }}</span>
+                        <span class="bi bi-heart-fill"></span><span class="tag-content">喜欢:{{ item.blog_like }}</span>
                     </div>
                     <div class="item">
-                        <span class="bi bi-book">阅读量:{{ item.blog_read }}</span>
+                        <span class="bi bi-book-fill"></span><span class="tag-content">阅读量:{{ item.blog_read }}</span>
+                    </div>
+                    <div class="item">
+                        <span class="bi bi-bookmark-dash-fill"></span><span class="tag-content">标签:{{ labels(item.blog_label) }}</span>
                     </div>
                 </div>
                 <p class=" not-slected">{{ item.blog_content | ellipsis }}</p>
@@ -68,16 +71,24 @@ export default {
             })
         }
     },
+    computed: {
+        labels() {
+            return function (label) {
+                label = label.toString()
+                return label.replace(/#/g, ' ')
+            }
+        }
+    },
     filters: {
         ellipsis(_val) {
             if (!_val) return "";
             //去掉#号
-            _val=_val.replace(/#/g,"");
+            _val = _val.replace(/#/g, "");
             //超出200字符的去掉
             if (_val.length > 200) {
                 return _val.slice(0, 200) + "······";
             }
-            
+
             return _val;
         },
     },
@@ -99,6 +110,7 @@ export default {
 }
 
 .blog-card:hover {
+    transition: all .4s;
     background-color: #e0e0e0;
 }
 
@@ -126,4 +138,8 @@ export default {
     /*早期浏览器*/
     user-select: none;
 }
-</style>z
+
+.tag-content {
+    margin: auto 5px;
+}
+</style>

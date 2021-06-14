@@ -1,4 +1,4 @@
---<template>
+<template>
 <div>
     <Header></Header>
     <div class="container">
@@ -8,6 +8,7 @@
         </div>
         <div class="left">
             <LatestCommentCard style="width:250px"></LatestCommentCard>
+            <LabelCloudCard style="width:250px"></LabelCloudCard>
         </div>
         <div class="right">
             <PersonalCard></PersonalCard>
@@ -27,6 +28,7 @@ import PagesButton from "../components/PagesButton.vue";
 import PersonalCard from "../components/PersonalCard"
 import MusicPlayer from "../components/MusicPlayer"
 import LatestCommentCard from "../components/LatestCommentCard.vue"
+import LabelCloudCard from "../components/LabelCloudCard.vue"
 
 import axios from "axios"
 export default {
@@ -48,10 +50,10 @@ export default {
         PagesButton,
         PersonalCard,
         MusicPlayer,
-        LatestCommentCard
+        LatestCommentCard,
+        LabelCloudCard
     },
     mounted: function () {
-        
         if (this.$route.query.page != undefined) {
             this.page = this.$route.query.page;
         }

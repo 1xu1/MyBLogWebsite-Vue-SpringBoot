@@ -5,7 +5,7 @@
             <img src="../assets/img/loading.gif" style="margin-top: 100px; margin-bottom: 100px" />
         </center>
     </div>
-    <div v-else>
+    <div v-else style="width:250px">
         <p>最新评论：</p>
         <a style="margin-top:5px" class="comment" :href="'./blog?blog_id='+item.blog_id+'#'+item.floor" v-for="item in comments">{{item.comment_user_name}}:{{item.comment_content}}</a>
     </div>
@@ -56,7 +56,7 @@ a {
     margin-top: 20px;
     margin-left: 20px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    padding: 10px 10px 10px 10px;
+    padding: 5px 5px 5px 5px;
     background: white;
     display: flex;
     flex-direction: column;
@@ -65,5 +65,6 @@ a {
 }
 .comment{
     display: block;
+    overflow: hidden;
 }
 </style>

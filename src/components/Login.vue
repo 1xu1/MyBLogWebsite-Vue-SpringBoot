@@ -62,8 +62,6 @@ export default {
     methods: {
         
         login: function (id, pwd) {
-            console.log(id)
-            console.log(pwd)
             if (sessionStorage.login_stat) {
                 alert("已经登录");
                 location.replace("/admin_back");
@@ -77,6 +75,7 @@ export default {
                 })
                 .then((res) => {
                     if (res.data) {
+                        console.log(res.data)
                         alert("登录成功");
                         sessionStorage.login_stat = true;
                         location.replace("/admin_back");
