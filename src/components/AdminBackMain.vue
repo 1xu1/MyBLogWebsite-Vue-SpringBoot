@@ -90,17 +90,19 @@ export default {
         },
         //读取全部的博文数据
         getData: function () {
-            axios.get("/api/getAllBlog", {
+            let i = axios.get("/api/admin/getAllBlog", {
                     params: {
                         start: this.page,
                         limit: this.limit
                     },
+                    headers: {
+                        'Token': sessionStorage.login_stat
+                    }
                 })
                 .then((res) => {
                     this.blog = res.data.data.list;
                     this.page = res.data.data.pageNum;
                     this.pageTotal = res.data.data.pages;
-                    console.log(this.blog)
                 })
                 .catch((err) => {
                     alert("诶呀，数据读取失败，请试着刷新一下");
@@ -111,9 +113,13 @@ export default {
         visBlog: function (index, vis) {
             let curBlog = this.blog[index]
             axios
-                .post("/api/editBlogVis", {
-                    blog_id: curBlog.blog_id,
-                    blog_visibility: vis,
+                .post("/api/admin/editBlogVis", {                  
+                        blog_id: curBlog.blog_id,
+                        blog_visibility: vis,
+                }, {
+                    headers: {
+                        'Token': sessionStorage.login_stat
+                    }
                 })
                 .then((res) => {
                     curBlog.blog_visibility = vis;
@@ -126,6 +132,7 @@ export default {
         },
     },
     mounted: function () {
+        console.log(sessionStorage.login_stat)
         if (this.$route.query.page != undefined) {
             this.page = this.$route.query.page;
         }

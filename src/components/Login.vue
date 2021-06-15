@@ -77,7 +77,7 @@ export default {
                     if (res.data) {
                         console.log(res.data)
                         alert("登录成功");
-                        sessionStorage.login_stat = true;
+                        sessionStorage.login_stat = res.data.data;
                         location.replace("/admin_back");
                     } else alert("登录失败");
                 })
