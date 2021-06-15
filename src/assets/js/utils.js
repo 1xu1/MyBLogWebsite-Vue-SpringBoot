@@ -91,3 +91,15 @@ function getSeconds(date) {
     }
     return seconds;
 }
+function IsURL(str_url){
+    const re = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+    return re.test(str_url)
+}
+function hasHttp(str_url){
+    let newString = str_url;
+    if (str_url.indexOf("http") == -1) {
+        newString = "http://" + str_url;
+    }
+    return newString;
+}
+export {IsURL,hasHttp}

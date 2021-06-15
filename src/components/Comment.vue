@@ -2,11 +2,11 @@
 <div class="box-shadow comment">
     <!--评论回复功能块-->
     <div class="container">
-        <input class="comment_input" placeholder="昵称" maxlength="8" v-model:value="commenter"></input>
+        <input class="comment_input" placeholder="昵称" maxlength="8" v-model="commenter"></input>
         </br>
-        <input class="comment_input" style="width: 40%;" placeholder="个人站点(选填)" maxlength="20" v-model:value="commenter_link"></input>
+        <input class="comment_input" style="width: 40%;" placeholder="个人站点(选填)" maxlength="40" v-model="commenter_link"></input>
         <div class="row">
-            <textarea id="comment_reply" class="comment_reply" placeholder="请在此输入评论" maxlength="250" v-model:value="commenter_content"></textarea>
+            <textarea id="comment_reply" class="comment_reply" placeholder="请在此输入评论" maxlength="250" v-model="commenter_content"></textarea>
             <button class="button_reply" v-on:click="addComment">回复</button>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <span class="commenter_name"> {{ item.comment_user_name }}</span>
             <span class="comment_sub" v-time="item.comment_time"></span>
             <span class="comment_sub">赞{{ item.comment_like }}</span>
-            <a class="comment_sub" v-if="item.comment_link !== undefined" v-bind:href="'http:' + item.comment_link">#{{ item.comment_link }}</a>
+            <a class="comment_sub" target="_blank" v-if="item.comment_link" v-bind:href="item.comment_link">#{{ item.comment_link }}</a>
         </div>
         <!--渲染评论内容-->
         <div class="comment-content">
@@ -34,6 +34,9 @@
 
 <script>
 import axios from "axios";
+import {
+    IsURL,hasHttp
+} from "../assets/js/utils"
 export default {
     name: "Comment",
     data() {
@@ -45,6 +48,7 @@ export default {
             commenter_content: "",
             loading: true,
             adding: false,
+            comment_date: null
         };
     },
     methods: {
@@ -59,12 +63,6 @@ export default {
                 })
                 .then((res) => {
                     this.comments_content = res.data.data;
-                    if (sessionStorage.commenter) {
-                        this.commenter = sessionStorage.commenter;
-                    }
-                    if (sessionStorage.comment_link) {
-                        this.commenter_link = sessionStorage.commenter_link;
-                    }
                     this.loading = false;
                 })
                 .catch((err) => {
@@ -74,11 +72,16 @@ export default {
         },
         //增加评论
         addComment: function () {
+            let now = new Date()
+            if (now - this.comment_date < 5000) {
+                alert("评论过于频繁");
+                return;
+            }
             if (this.adding) {
                 alert("评论正在上传，请等待一下");
                 return;
             }
-            this.adding = true;
+            
             let cur_comment =
                 Math.max.apply(
                     Math,
@@ -91,13 +94,23 @@ export default {
                 alert("用户名输入有问题");
                 return;
             }
-            if (this.commenter_link == "" || this.commenter_link == null) {
+            let link=this.commenter_link
+            if (link == "") {
                 this.commenter_link = null;
+            } else {
+                if (!IsURL(link)) {
+                    alert("网址输入有错误")
+                    return
+                }
+                link=hasHttp(link)
             }
             if (this.commenter_content == "" || this.commenter_content == null) {
                 alert("回复内容有问题");
                 return;
             }
+            this.commenter_link=link
+            this.comment_date = new Date()
+            this.adding = true;
             axios
                 .post("/api/addComment", {
                     comment_user_name: this.commenter,
@@ -109,7 +122,6 @@ export default {
                 .then((res) => {
                     let new_item;
                     new_item = res.data.data;
-                    console.log(new_item)
                     this.comments_content.push(new_item);
                     sessionStorage.commenter = this.commenter;
                     sessionStorage.comment_link = this.commenter_link;
@@ -122,23 +134,10 @@ export default {
         },
     },
     mounted: function () {
-        setIpAdress();
         this.getComments();
     },
 };
 
-function setIpAdress() {
-    if (
-        window.location.origin === "file://" ||
-        window.location.origin === "http://localhost:8080"
-    ) {
-        axios.defaults.baseURL = "http://localhost:8083";
-        //axios.defaults.baseURL = "http://42.192.211.76:8083";
-    } else {
-        axios.defaults.baseURL = window.location.origin + ":8083";
-    }
-    console.log(axios.defaults.baseURL);
-}
 //处理从url提取参数的问题
 function GetRequest() {
     var url = location.search;
@@ -165,7 +164,7 @@ function GetRequest() {
 }
 
 .comment-content {
-    text-indent:40px;
+    text-indent: 40px;
     position: relative;
     width: 95%;
     left: 35px;
