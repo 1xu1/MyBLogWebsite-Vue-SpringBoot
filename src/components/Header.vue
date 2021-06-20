@@ -1,12 +1,12 @@
 <template>
   <div class="head-contanier">
-    <img src="../assets/img/logo.png" class="head-icon" />
+    <img src="../assets/img/head.png" class="head-icon" />
     <span class="head-title">盐巴鱼的博客</span>
     <nav class="head-right">
       <a class="head-item" href="/home">个人博文</a>
       <a class="head-item" href="/home?page=1&label=更新日志">更新日志</a>
       <a class="head-item" href="/building">资源分享</a>
-      <a class="head-item" href="/building">项目分享</a>
+      <a class="head-item" href="/Projects">项目分享</a>
     </nav>
     <el-button @click="login()" type="primary" class="head-button">登录</el-button>
     <Login :loginVisible='loginDialog'></Login>

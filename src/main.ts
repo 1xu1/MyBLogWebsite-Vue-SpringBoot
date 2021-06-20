@@ -11,12 +11,12 @@ Vue.use(mavonEditor);
 
 function setIpAdress() {
   if (
-      window.location.origin === "file://" ||
-      window.location.origin === "http://localhost:8080"
+    window.location.origin === "file://" ||
+    window.location.origin === "http://localhost:8080"
   ) {
-      axios.defaults.baseURL = "http://localhost:8083";
+    axios.defaults.baseURL = "http://localhost:8083";
   } else {
-      axios.defaults.baseURL = window.location.origin + ":8083";
+    axios.defaults.baseURL = window.location.origin + ":8083";
   }
 }
 setIpAdress();

@@ -7,6 +7,7 @@ import Building from '../views/Building.vue'
 import AdminBack_Blog from '../views/AdminBack_Blog.vue'
 import Blog from '../views/Blog.vue'
 import BlogEditor from '../views/BlogEditor.vue'
+import Projects from '../views/Projects.vue'
 
 Vue.use(VueRouter)
 
@@ -44,15 +45,22 @@ const routes: Array<RouteConfig> = [
     path: '/admin_back/blogEditor',
     name: 'BlogEditor',
     component: BlogEditor,
-    meta:{
-      title:'博文编辑'
+    meta: {
+      title: '博文编辑'
     }
   }, {
     path: '/admin_back/blog',
     name: 'AdminBack_Blog',
     component: AdminBack_Blog,
-    meta:{
-      title:'后台管理'
+    meta: {
+      title: '后台管理'
+    }
+  }, {
+    path: '/Projects',
+    name: 'Projects',
+    component: Projects,
+    meta: {
+      title: '项目分享'
     }
   }
 

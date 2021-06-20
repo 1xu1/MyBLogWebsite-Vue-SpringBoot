@@ -1,6 +1,6 @@
 <template>
 <div class="personal-card">
-    <img src="../assets/img/logo.png" class="head-icon" />
+    <img src="../assets/img/head.png" class="head-icon" />
     <span>盐巴鱼</span>
     <span>“欢迎大家来和我技术交流”</span>
     <span>“有外包单子也可以找我”</span>
