@@ -37,8 +37,7 @@ export default {
 .project-card {
     height: 300px;
     width: 200px;
-    margin-top: 20px;
-    margin-left: 20px;
+    margin: 20px 20px 20px 20px;
     box-shadow: 0 0 35px 5px rgb(0 0 0 / 40%);
     padding: 10px 10px 10px 10px;
     background: white;

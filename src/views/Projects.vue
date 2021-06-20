@@ -4,6 +4,7 @@
     <div class="projects-contanier">
         <div class="projects-content">
             <ProjectCard title="平台游戏" img="https://images.cnblogs.com/cnblogs_com/YuXiang-Xu/1989863/o_2106201250471624193367(1).png" intro="一个简单的平台游戏" url="/others/game/index.html"></ProjectCard>
+            <ProjectCard title="中医药宝典" img="https://images.cnblogs.com/cnblogs_com/YuXiang-Xu/1989863/o_2106201543161624203746(1).png" intro="使用vant简单搭建的移动端网页" url="/others/zhongyiyao/"></ProjectCard>
         </div>
     </div>
     <Footer></Footer>
@@ -31,6 +32,9 @@ export default {
 }
 
 .projects-content {
+    display: flex;
     width: 80%;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 </style>
