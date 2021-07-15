@@ -1,9 +1,9 @@
 <template>
 <div>
     <div v-if="loading">
-        <center>
-            <img src="../assets/img/loading.gif" style="margin-top: 100px; margin-bottom: 100px" />
-        </center>
+        <div class="loading">
+            <LoadingIcon></LoadingIcon>
+        </div>
     </div>
     <!--博文信息相关-->
     <div v-else class="head_info">
@@ -22,8 +22,12 @@
 </template>
 
 <script>
+import LoadingIcon from "./LoadingIcon.vue"
 export default {
     name: "Template",
+    components:{
+        LoadingIcon
+    },
     props: {
         blog_id: {
             type: String,

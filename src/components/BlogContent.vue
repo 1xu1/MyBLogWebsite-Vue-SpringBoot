@@ -2,12 +2,9 @@
   <!--博文内容块-->
   <div>
     <div v-if="loading">
-      <center>
-        <img
-          src="../assets/img/loading.gif"
-          style="margin-top: 100px; margin-bottom: 100px"
-        />
-      </center>
+      <div class="loading">
+        <LoadingIcon></LoadingIcon>
+      </div>
     </div>
     <!--博文内容-->
     <div v-else>
@@ -65,6 +62,15 @@ export default {
 
 <style scoped>
 /*@import "bootstrap";*/
+
+.loading{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
 .commenter_name {
   text-decoration: none;
   font-weight: 700;

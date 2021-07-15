@@ -82,7 +82,6 @@ export default {
                     this.loading = false;
                 })
                 .catch((err) => {
-                    alert("诶呀，数据读取失败，请试着刷新一下");
                     console.log(err);
                 });
         },

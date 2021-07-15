@@ -1,10 +1,10 @@
 <template>
 <!--博文列表-->
 <div id="blogList">
-    <div v-if="loading">
-        <center>
-            <img src="../assets/img/loading.gif" style="margin-top: 100px; margin-bottom: 100px" />
-        </center>
+    <div v-if="loading" class="loading">
+        <div class="loading-center">
+            <LoadingIcon></LoadingIcon>
+        </div>
     </div>
     <div v-else>
         <div v-for="item in blog" class="blog-card" @click='goToBlog(item)'>
@@ -38,7 +38,11 @@
 
 <script>
 import time from "../assets/js/time";
+import LoadingIcon from "../components/LoadingIcon.vue"
 export default {
+    components:{
+        LoadingIcon,
+    },
     name: "BlogList",
     data() {
         return {};
@@ -97,6 +101,17 @@ export default {
 
 <style scoped>
 /*@import "bootstrap";*/
+.loading{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
+.loading-center {
+    
+}
 
 .title {
     font: 600 1.2em "Fira Sans", sans-serif;

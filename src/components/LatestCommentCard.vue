@@ -1,9 +1,9 @@
 <template>
 <div class="latest-comment-card">
     <div v-if="loading">
-        <center>
-            <img src="../assets/img/loading.gif" style="margin-top: 100px; margin-bottom: 100px" />
-        </center>
+        <div class="loading">
+            <LoadingIcon></LoadingIcon>
+        </div>
     </div>
     <div v-else style="width:250px">
         <p>最新评论：</p>
@@ -14,7 +14,11 @@
 
 <script>
 import axios from "axios"
+import LoadingIcon from "../components/LoadingIcon.vue"
 export default {
+    components:{
+        LoadingIcon,
+    },
     name: "LatestCommentCard",
     data() {
         return {
@@ -32,7 +36,6 @@ export default {
                     this.loading = false;
                 })
                 .catch((err) => {
-                    alert("诶呀，数据读取失败，请试着刷新一下");
                     console.log(err);
                 });
         }
@@ -50,6 +53,14 @@ a {
     text-decoration: none;
     background-color: transparent;
 
+}
+
+.loading{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
 }
 
 .latest-comment-card {

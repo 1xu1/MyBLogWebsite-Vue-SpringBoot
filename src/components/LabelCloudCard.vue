@@ -1,9 +1,9 @@
 <template>
 <div class="label-cloud-card">
     <div v-if="loading">
-        <center>
-            <img src="../assets/img/loading.gif" style="margin-top: 100px; margin-bottom: 100px" />
-        </center>
+        <div class="loading">
+            <LoadingIcon></LoadingIcon>
+        </div>
     </div>
     <div v-else>
         <p>标签云</p>
@@ -17,8 +17,12 @@
 
 <script>
 import axios from "axios"
+import LoadingIcon from "../components/LoadingIcon.vue"
 export default {
     name: "LabelCloudCard",
+    components:{
+        LoadingIcon
+    },
     data() {
         return {
             labels: [],
@@ -34,7 +38,6 @@ export default {
                     this.loading = false
                 })
                 .catch((err) => {
-                    alert("诶呀，数据读取失败，请试着刷新一下");
                     console.log(err);
                 });
         }
@@ -66,6 +69,12 @@ export default {
 a {
     text-decoration: none ;
     color: black;
+}
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
 }
 
 .label-cloud-card {
