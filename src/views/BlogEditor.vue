@@ -17,7 +17,7 @@
         </button>
     </div>
     <div class="container">
-        <mavon-editor class="editor" v-model="blog.blog_content"></mavon-editor>
+        <mavon-editor class="editor" @save="save()" v-model="blog.blog_content"></mavon-editor>
     </div>
 
     <Footer></Footer>

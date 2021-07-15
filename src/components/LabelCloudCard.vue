@@ -17,12 +17,8 @@
 
 <script>
 import axios from "axios"
-import LoadingIcon from "../components/LoadingIcon.vue"
 export default {
     name: "LabelCloudCard",
-    components:{
-        LoadingIcon
-    },
     data() {
         return {
             labels: [],

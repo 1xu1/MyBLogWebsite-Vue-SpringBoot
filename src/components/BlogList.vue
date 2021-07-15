@@ -37,12 +37,8 @@
 </template>
 
 <script>
-import time from "../assets/js/time";
-import LoadingIcon from "../components/LoadingIcon.vue"
+import time from "@/assets/js/time"
 export default {
-    components:{
-        LoadingIcon,
-    },
     name: "BlogList",
     data() {
         return {};
@@ -107,10 +103,6 @@ export default {
     justify-content: center;
     align-items: center;
     height: 400px;
-}
-
-.loading-center {
-    
 }
 
 .title {

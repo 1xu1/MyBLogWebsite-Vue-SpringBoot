@@ -85,7 +85,6 @@ export default {
         if (this.$route.query.label != undefined) {
             this.blog_label = this.$route.query.label;
         }
-        setIpAdress();
         this.getData();
         this.addBlogRead();
     },

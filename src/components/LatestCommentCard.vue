@@ -7,18 +7,15 @@
     </div>
     <div v-else style="width:250px">
         <p>最新评论：</p>
-        <a style="margin-top:5px" class="comment" :href="'./blog?blog_id='+item.blog_id+'#'+item.floor" v-for="item in comments">{{item.comment_user_name}}:{{item.comment_content}}</a>
+        <hr>
+        <a style="margin-top:5px" class="comment" :href="'./blog?blog_id='+item.blog_id+'#'+item.floor" v-for="item in comments">{{item.comment_user_name}}:{{commentContent(item.comment_content)}}</a>
     </div>
 </div>
 </template>
 
 <script>
 import axios from "axios"
-import LoadingIcon from "../components/LoadingIcon.vue"
 export default {
-    components:{
-        LoadingIcon,
-    },
     name: "LatestCommentCard",
     data() {
         return {
@@ -42,6 +39,16 @@ export default {
     },
     mounted: function () {
         this.getDate()
+    },
+    computed:{
+        commentContent(){
+            return function(text){
+                if(text.length>20){
+                    return text.slice(0,20)+"..."
+                }
+                return text
+            }
+        }
     }
 }
 </script>

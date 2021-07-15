@@ -22,12 +22,8 @@
 </template>
 
 <script>
-import LoadingIcon from "./LoadingIcon.vue"
 export default {
     name: "Template",
-    components:{
-        LoadingIcon
-    },
     props: {
         blog_id: {
             type: String,
