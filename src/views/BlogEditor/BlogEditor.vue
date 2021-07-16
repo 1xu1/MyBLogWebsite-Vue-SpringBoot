@@ -6,18 +6,24 @@
         <input v-model:value="blog.blog_title" />
         <span class='itemsInLine'>博文标签</span>
         <input type="text" v-model:value="blog.blog_label" />
-        <button class="dropdown-item" v-on:click="save">
+        <button @click="save">
             保存
         </button>
-        <button class="dropdown-item" v-on:click="addBlog">
+        <button @click="addBlog">
             新建
         </button>
-        <button class="dropdown-item" onclick="window.location.href = '../admin_back'">
+        <button v-show="this.blog.blog_visibility==0" @click="editVis(blog.blog_id,1)">
+            发布
+        </button>
+        <button v-show="this.blog.blog_visibility==1" @click="editVis(blog.blog_id,0)">
+            隐藏
+        </button>
+        <button onclick="window.location.href = '../admin_back'">
             返回
         </button>
     </div>
     <div class="container">
-        <mavon-editor class="editor" @save="save()" v-model="blog.blog_content"></mavon-editor>
+        <mavon-editor class="editor" @save="save" v-model="blog.blog_content"></mavon-editor>
     </div>
 
     <Footer></Footer>
@@ -26,8 +32,8 @@
 
 <script>
 import axios from "axios";
-import Footer from "../components/Footer.vue";
-import Header from "../components/Header.vue";
+import Footer from "@/components/Footer.vue";
+import Header from "@/components/Header.vue";
 
 export default {
     name: "BlogEditor",
@@ -132,32 +138,44 @@ export default {
                 .then((res) => {
                     this.blog = res.data.data;
                     console.log(this.blog);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    alert("新增失败");
                 });
         },
+        //发布/隐藏博文 1显示 0隐藏
+        editVis: function (id,vis) {
+            let that=this;
+            axios
+                .post("/api/admin/editBlogVis", {                  
+                        blog_id: id,
+                        blog_visibility: vis,
+                }, {
+                    headers: {
+                        'Token': sessionStorage.login_stat
+                    }
+                })
+                .then((res) => {
+                    that.blog.blog_visibility = vis;
+                    alert("调整成功");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    alert("调整失败");
+                });
+        }
     },
     mounted: function () {
         if (!sessionStorage.login_stat) {
             alert("登录状态异常，跳转回首页！");
             location.replace("./home");
         } else {
-            setIpAdress();
             this.getData();
         }
     },
 };
 
-function setIpAdress() {
-    if (
-        window.location.origin === "file://" ||
-        window.location.origin === "http://localhost:8080"
-    ) {
-        axios.defaults.baseURL = "http://localhost:8083";
-        //axios.defaults.baseURL = "http://42.192.211.76:8083";
-    } else {
-        axios.defaults.baseURL = window.location.origin + ":8083";
-    }
-    console.log(axios.defaults.baseURL);
-}
 //处理从url提取参数的问题
 function GetRequest() {
     var url = location.search;

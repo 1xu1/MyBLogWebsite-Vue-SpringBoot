@@ -2,7 +2,7 @@
     <div>
         <Header></Header>
         <div class="building_center">
-            <img src="../assets/img/what.png"></img>
+            <img src="@/assets/img/what.png"></img>
             <center><h1>该模块施工中</h1></center>
         </div>
         <Footer></Footer>
@@ -11,8 +11,8 @@
 
 <script>
 //引入组件
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 export default {
   name: "Building",
   data() {

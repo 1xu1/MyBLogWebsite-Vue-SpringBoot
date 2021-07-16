@@ -4,11 +4,11 @@
     <div class="container">
         <div class="middle">
             <BlogList :page="page" :limit="limit" :blog="blog" :loading="loading"></BlogList>
-            <PagesButton :pageNum="page" :pages="pageTotal"></PagesButton>
+            <PagesButton :pageNum="page" :pages="pageTotal" @pageTrans="refresh"></PagesButton> 
         </div>
         <div class="left">
             <LatestCommentCard style="width:250px"></LatestCommentCard>
-            <LabelCloudCard style="width:250px"></LabelCloudCard>
+            <LabelCloudCard @change="refresh" style="width:250px"></LabelCloudCard>
         </div>
         <div class="right">
             <PersonalCard></PersonalCard>
@@ -21,14 +21,15 @@
 
 <script>
 //引入组件
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import BlogList from "../components/BlogList";
-import PagesButton from "../components/PagesButton.vue";
-import PersonalCard from "../components/PersonalCard"
-import MusicPlayer from "../components/MusicPlayer"
-import LatestCommentCard from "../components/LatestCommentCard.vue"
-import LabelCloudCard from "../components/LabelCloudCard.vue"
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import PagesButton from "@/components/PagesButton.vue";
+import MusicPlayer from "@/components/MusicPlayer"
+
+import BlogList from "./BlogList.vue";
+import PersonalCard from "./PersonalCard.vue"
+import LatestCommentCard from "./LatestCommentCard.vue"
+import LabelCloudCard from "./LabelCloudCard.vue"
 
 import axios from "axios"
 export default {
@@ -85,6 +86,17 @@ export default {
                     console.log(err);
                 });
         },
+        //分页跳转刷新博文列表
+        refresh:function(page,limit,blog_label){
+            if(page!=null)
+                this.page=page
+            if(!limit!=null)
+                this.limit=limit
+            if(!blog_label!=null)
+                this.blog_label=blog_label
+            this.loading = true;
+            this.getData()
+        }
     }
 };
 

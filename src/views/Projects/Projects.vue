@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import ProjectCard from "../components/ProjectCard.vue"
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import ProjectCard from "@/components/ProjectCard.vue"
 export default {
     name: "Projects",
     components: {

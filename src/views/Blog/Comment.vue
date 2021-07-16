@@ -17,7 +17,7 @@
         <!--渲染评论头部信息-->
         <div class="row" style="align-items:center;">
             <div style="margin-left:10px">#{{ item.floor }}</div>
-            <img src="../assets/img/default_head.png" class="head_icon" alt="..." />
+            <img src="@/assets/img/default_head.png" class="head_icon" alt="..." />
             <span class="commenter_name"> {{ item.comment_user_name }}</span>
             <span class="comment_sub" v-time="item.comment_time"></span>
             <span class="comment_sub">赞{{ item.comment_like }}</span>
@@ -36,7 +36,7 @@
 import axios from "axios";
 import {
     IsURL,hasHttp
-} from "../assets/js/utils"
+} from "@/assets/js/utils"
 export default {
     name: "Comment",
     data() {

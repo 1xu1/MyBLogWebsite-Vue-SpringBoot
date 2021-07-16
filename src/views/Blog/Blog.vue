@@ -18,12 +18,13 @@
 </template>
 
 <script>
-import Footer from "../components/Footer.vue";
-import Header from "../components/Header.vue";
-import BlogContent from "../components/BlogContent";
-import Comment from "../components/Comment";
-import LikeButton from "../components/LikeButton";
-import BlogHead from "../components/BlogHead";
+import Footer from "@/components/Footer.vue";
+import Header from "@/components/Header.vue";
+import LikeButton from "@/components/LikeButton";
+
+import BlogContent from "./BlogContent.vue";
+import Comment from "./Comment.vue";
+import BlogHead from "./BlogHead.vue";
 
 import axios from "axios";
 export default {
@@ -90,18 +91,6 @@ export default {
     },
 };
 
-function setIpAdress() {
-    if (
-        window.location.origin === "file://" ||
-        window.location.origin === "http://localhost:8080"
-    ) {
-        axios.defaults.baseURL = "http://localhost:8083";
-        //axios.defaults.baseURL = "http://42.192.211.76:8083";
-    } else {
-        axios.defaults.baseURL = window.location.origin + ":8083";
-    }
-    console.log(axios.defaults.baseURL);
-}
 </script>
 
 <style scoped>
@@ -110,8 +99,10 @@ function setIpAdress() {
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .container{
+  display: block; 
   margin-left: 10%;
   width: 80%;
+  max-width: 800px;
 }
 
 </style>

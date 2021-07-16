@@ -55,7 +55,7 @@ import {
     DatePicker,
     Main
 } from "element-ui"
-import PagesButton from "./PagesButton.vue"
+import PagesButton from "@/components/PagesButton.vue"
 export default {
     name: "AdminBackMain",
     components: {

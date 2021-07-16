@@ -7,15 +7,19 @@
     </div>
     <div v-else style="width:250px">
         <p>最新评论：</p>
-        <hr>
-        <a style="margin-top:5px" class="comment" :href="'./blog?blog_id='+item.blog_id+'#'+item.floor" v-for="item in comments">{{item.comment_user_name}}:{{commentContent(item.comment_content)}}</a>
+        <div v-for="item in comments" class="block">
+            <div class="user">{{item.comment_user_name}} ：</div>
+            <a style="margin-top:5px" class="comment" :href="'./blog?blog_id='+item.blog_id+'#'+item.floor">{{commentContent(item.comment_content)}}</a>
+        </div>
     </div>
 </div>
 </template>
 
 <script>
 import axios from "axios"
+import CrossLine from '@/components/things/CrossLine.vue';
 export default {
+  components: { CrossLine },
     name: "LatestCommentCard",
     data() {
         return {
@@ -56,9 +60,28 @@ export default {
 <style scoped>
 a {
     cursor: pointer;
-    color: #007bff;
+    color: #757575;
     text-decoration: none;
     background-color: transparent;
+}
+
+.block{
+    margin:10px 0 0 10px;
+    min-height: 40px;
+}
+
+.block:hover{
+    transition: all .4s;
+    background-color: #e0e0e0;
+}
+
+.user{
+    line-height: 20px;
+    font-weight: 500;
+    color: #212121;
+}
+
+.content{
 
 }
 

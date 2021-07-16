@@ -14,11 +14,16 @@
             pageNum:{
                 Number,
                 default:1
-            }
+            },
         },
         methods:{
+            // pageTrans:function(index){
+            //     location.replace(this.$route.path+"?page=" + index);
+            // },
+            //@event
+            //点击按钮触发
             pageTrans:function(index){
-                location.replace(this.$route.path+"?page=" + index);
+                this.$emit('pageTrans',index)
             }
         }
     }

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import LikeButton from './LikeButton.vue';
+import LikeButton from '@/components/LikeButton.vue';
 export default {
   components: { LikeButton },
   name: "BlogContent",

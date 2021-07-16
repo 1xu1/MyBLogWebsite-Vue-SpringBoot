@@ -45,7 +45,7 @@ export default {
 
 .head_info {
     background-color: black;
-    background-image: url(../assets/img/head_3.jpg);
+    background-image: url(~@/assets/img/head_3.jpg);
     background-size: contain;
     line-height: 100%;
     width: 100%;

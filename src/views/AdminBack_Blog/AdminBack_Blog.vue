@@ -13,11 +13,11 @@
 
 <script>
 //引入组件
-import AdminBackSide from "../components/AdminBackSide.vue";
-import Footer from "../components/Footer.vue";
-import Header from "../components/Header.vue";
-import AdminBackMain from "../components/AdminBackMain.vue";
-import PagesButton from "../components/PagesButton";
+import AdminBackSide from "@/views/AdminBack_Blog/AdminBackSide.vue";
+import Footer from "@/components/Footer.vue";
+import Header from "@/components/Header.vue";
+import AdminBackMain from "@/views/AdminBack_Blog/AdminBackMain.vue";
+import PagesButton from "@/components/PagesButton";
 import {Container,Aside} from "element-ui"
 
 export default {

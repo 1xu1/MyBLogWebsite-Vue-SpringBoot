@@ -2,12 +2,12 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 
 //引入页面级组件
-import Home from '../views/Home.vue'
-import Building from '../views/Building.vue'
-import AdminBack_Blog from '../views/AdminBack_Blog.vue'
-import Blog from '../views/Blog.vue'
-import BlogEditor from '../views/BlogEditor.vue'
-import Projects from '../views/Projects.vue'
+import Home from '@/views/Home/Home.vue'
+import Building from '@/views/Building/Building.vue'
+import AdminBack_Blog from '@/views/AdminBack_Blog/AdminBack_Blog.vue'
+import Blog from '@/views/Blog/Blog.vue'
+import BlogEditor from '@/views/BlogEditor/BlogEditor.vue'
+import Projects from '@/views/Projects/Projects.vue'
 
 Vue.use(VueRouter)
 

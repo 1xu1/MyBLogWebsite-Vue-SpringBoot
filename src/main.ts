@@ -10,9 +10,10 @@ import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 //全局引入组件
 import mavonEditor from 'mavon-editor'
 import LoadingIcon from '@/components/things/LoadingIcon.vue'
+import CrossLine from '@/components/things/CrossLine.vue'
 
 Vue.component('LoadingIcon', LoadingIcon)
-
+Vue.component('cross-line', CrossLine)
 Vue.use(mavonEditor);
 
 //设置axios基础地址

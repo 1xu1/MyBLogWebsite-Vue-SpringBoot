@@ -8,7 +8,10 @@
     <div v-else>
         <p>标签云</p>
         <div class="label-row">
-            <a :key="key" v-for='(value, key) in labels' :href="labelUrl(key)" class="label-button"><span>{{key}}</span><span class="label-num">{{value}}</span></a>
+            <a :id="index" :key="value[0]" v-for='(value,index) in labels' @click="change(value[0],index)" class="label-button">
+                <span>{{value[0]}}</span>
+                <span class="label-num">{{value[1]}}</span>
+            </a>
         </div>
 
     </div>
@@ -17,12 +20,15 @@
 
 <script>
 import axios from "axios"
+import CrossLine from '@/components/things/CrossLine.vue';
 export default {
+  components: { CrossLine },
     name: "LabelCloudCard",
     data() {
         return {
             labels: [],
-            loading: true
+            loading: true,
+            slected:[]
         }
     },
     methods: {
@@ -30,12 +36,42 @@ export default {
             axios
                 .get("/api/getBlogLabels")
                 .then((res) => {
-                    this.labels = res.data.data;
+                    this.labels = new Map(Object.entries(res.data.data)); 
                     this.loading = false
+                    let arr=Array.from(this.labels)
+                    arr.sort((a,b)=>{
+                        return b[1]-a[1]
+                    })
+                    this.labels=new Map(arr)
                 })
                 .catch((err) => {
                     console.log(err);
                 });
+
+
+            
+        },
+        //@event
+        //点击标签按钮触发
+        change(label,index){
+            let slected=this.slected
+            let tmp;
+            if(!slected.includes(index)){
+                if((tmp = slected.pop())!=undefined)
+                    document.getElementById(tmp).style.backgroundColor="#FFFFFF"
+                document.getElementById(index).style.backgroundColor="#BBDEFB"
+                slected.push(index)
+            }
+            else{
+                document.getElementById(index).style.backgroundColor="#FFFFFF"
+                slected.splice(index,1)
+                label=''
+            }
+            this.slected=index
+            let page=1
+            let limit=null
+            this.$emit('change',page,limit,label)
+            this.slected=slected
         }
 
     },

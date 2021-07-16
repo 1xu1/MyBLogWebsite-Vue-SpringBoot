@@ -1,6 +1,6 @@
 <template>
 <div class="personal-card">
-    <img src="../assets/img/head.png" class="head-icon" />
+    <img src="@/assets/img/head.png" class="head-icon" />
     <span>盐巴鱼</span>
     <span>“欢迎大家来和我技术交流”</span>
     <span>“有外包单子也可以找我”</span>
@@ -40,7 +40,7 @@
 
 <script>
 //引入组件
-import BuyMeCofee from "../components/BuyMeCofee"
+import BuyMeCofee from "@/components/BuyMeCofee"
 export default {
     name: "PersonalCard",
     components: {
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style scoped>
-@import url(../assets/css/utils.css);
+@import url(~@/assets/css/utils.css);
 
 a {
     cursor: pointer;
