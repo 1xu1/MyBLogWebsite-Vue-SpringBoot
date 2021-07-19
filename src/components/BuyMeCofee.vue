@@ -11,11 +11,11 @@
     <div v-show="onHover" class="buy-contanier buy-contanier-shadow-card">
         <div class="buy-column">
             <span class="buy-words">支付宝</span>
-            <img class="buy-img" src='../assets/img/AliPay.png'>
+            <img class="buy-img" src='@/assets/img/AliPay.png'>
         </div>
         <div class="buy-column">
             <span class="buy-words">微信</span>
-            <img class="buy-img" src='../assets/img/WeChat.png'>
+            <img class="buy-img" src='@/assets/img/WeChat.png'>
         </div>
     </div>
 </div>

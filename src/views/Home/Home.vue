@@ -3,7 +3,7 @@
     <Header></Header>
     <div class="container">
         <div class="middle">
-            <BlogList :page="page" :limit="limit" :blog="blog" :loading="loading"></BlogList>
+            <BlogList :page="page" :limit="limit" :blog="blogSorted" :loading="loading"></BlogList>
             <PagesButton :pageNum="page" :pages="pageTotal" @pageTrans="refresh"></PagesButton> 
         </div>
         <div class="left">
@@ -38,7 +38,7 @@ export default {
         return {
             page: 1,
             limit: 10,
-            blog: null,
+            blog: [],
             loading: true,
             pageTotal: 0,
             blog_label:''
@@ -54,7 +54,16 @@ export default {
         LatestCommentCard,
         LabelCloudCard
     },
-    mounted: function () {
+    computed:{
+        blogSorted(){
+            return this.blog.sort(((a,b)=>{
+                let t1= new Date(a.blog_time)
+                let t2= new Date(b.blog_time)
+                return t2-t1
+            }))
+        }
+    }
+    ,mounted: function () {
         if (this.$route.query.page != undefined) {
             this.page = this.$route.query.page;
         }
@@ -81,6 +90,7 @@ export default {
                     this.blog = res.data.data.list;
                     this.pageTotal = res.data.data.pages;
                     this.loading = false;
+                    console.log(this.blog)
                 })
                 .catch((err) => {
                     console.log(err);
