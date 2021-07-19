@@ -90,7 +90,6 @@ export default {
                     this.blog = res.data.data.list;
                     this.pageTotal = res.data.data.pages;
                     this.loading = false;
-                    console.log(this.blog)
                 })
                 .catch((err) => {
                     console.log(err);
